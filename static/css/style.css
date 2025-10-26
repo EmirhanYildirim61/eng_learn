@@ -1,0 +1,47 @@
+/* static/css/style.css dosyasının içeriği */
+
+.btn {
+    /* Butonun genel yapısı */
+    display: inline-block; /* Yan yana durabilmeleri için */
+    padding: 12px 24px;    /* İç boşluk (dikey ve yatay) */
+    margin: 5px;           /* Butonlar arası dış boşluk */
+    
+    /* Yazı stilleri */
+    color: white;          /* Yazı rengi beyaz */
+    font-size: 16px;       /* Yazı boyutu */
+    font-weight: bold;     /* Kalın yazı */
+    text-align: center;    /* Yazıyı ortala */
+    text-decoration: none; /* Link alt çizgisini kaldır */
+    
+    /* Görünüm */
+    border: none;             /* Kenarlık olmasın */
+    border-radius: 8px;     /* Kenarları yuvarlat */
+    cursor: pointer;          /* Üzerine gelince fare imlecini el yap */
+    
+    /* Geçiş efekti */
+    transition: background-color 0.3s ease; /* Renk değişimini yumuşat */
+}
+
+/* 1. Buton: Mavi */
+.btn-mavi {
+    background-color: #007bff; /* Arka plan rengi */
+}
+.btn-mavi:hover {
+    background-color: #0056b3; /* Üzerine gelince koyu mavi */
+}
+
+/* 2. Buton: Yeşil */
+.btn-yesil {
+    background-color: #28a745; /* Arka plan rengi */
+}
+.btn-yesil:hover {
+    background-color: #1e7e34; /* Üzerine gelince koyu yeşil */
+}
+
+/* 3. Buton: Kırmızı */
+.btn-kirmizi {
+    background-color: #dc3545; /* Arka plan rengi */
+}
+.btn-kirmizi:hover {
+    background-color: #b21f2d; /* Üzerine gelince koyu kırmızı */
+}

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelimeleri Yönet</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* Bu sayfaya özel bazı ek stiller */
+        .word-list {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .word-item {
+            display: flex; /* Kelimeyi ve butonu yan yana getir */
+            justify-content: space-between; /* Aralarına boşluk koy */
+            align-items: center; /* Dikeyde ortala */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+        .word-text {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body style="padding: 20px;">
+
+    <h1>Kayıtlı Kelimeler</h1>
+    <p>Burada eklediğiniz tüm kelimeleri görebilir ve silebilirsiniz.</p>
+
+    <div class="word-list">
+        {% if words %}
+            {% for word in words %}
+                <div class="word-item">
+                    <span class="word-text">
+                        <strong>{{ word.english }}</strong> - {{ word.turkish }}
+                    </span>
+                    
+                    <form method="POST" action="{% url 'delete-word-action' word.id %}" style="margin: 0;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-kirmizi" style="padding: 8px 12px;">
+                            Sil
+                        </button>
+                    </form>
+                    
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Henüz hiç kelime eklenmemiş.</p>
+        {% endif %}
+    </div>
+    
+    <br>
+    <a href="{% url 'main' %}" class="btn btn-mavi">Ana Sayfaya Dön</a>
+
+</body>
+</html>

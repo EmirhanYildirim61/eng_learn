@@ -1,0 +1,28 @@
+{% load static %} <!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa</title>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+
+    <h1>Yapmak istediğiniz işlemi seçiniz</h1>
+    
+    <a href="{% url 'add-word' %}" class="btn btn-yesil">
+        Kelime Ekle
+    </a>
+    
+    <a href="{% url 'delete-word' %}" class="btn btn-kirmizi">
+        Kelime Sil
+    </a>
+    
+    <a href="{% url 'learn-word' %}" class="btn btn-mavi">
+        Kelime Çalış
+    </a>
+
+</body>
+</html>

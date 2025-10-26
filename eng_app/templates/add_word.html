@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelime Ekle</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style="padding: 20px;">
+
+    <h1>Yeni Kelime Ekle</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 15px;">
+            <label for="id_english" style="font-weight: bold;">İngilizce:</label>
+            {{ form.english }}
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="id_turkish" style="font-weight: bold;">Türkçe:</label>
+            {{ form.turkish }}
+        </div>
+        
+        <button type="submit" class="btn btn-yesil">Kaydet</button>
+    </form>
+    
+    <br>
+    <a href="{% url 'main' %}" class="btn btn-mavi">Ana Sayfaya Dön</a>
+
+</body>
+</html>

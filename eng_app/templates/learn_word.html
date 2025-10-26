@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelime Çalış</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* Bu sayfaya özel stiller */
+        .learn-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 25px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .question-word {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box; /* padding'in genişliği etkilememesi için */
+        }
+        /* Geri bildirim (Feedback) stilleri */
+        .feedback {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .feedback-correct {
+            background-color: #d4edda; /* Açık yeşil */
+            color: #155724; /* Koyu yeşil */
+        }
+        .feedback-wrong {
+            background-color: #f8d7da; /* Açık kırmızı */
+            color: #721c24; /* Koyu kırmızı */
+        }
+    </style>
+</head>
+<body style="padding: 20px;">
+
+    <h1>Kelime Çalış</h1>
+
+    <div class="learn-container">
+    
+        {% if feedback %}
+            <div class="feedback {% if feedback.is_correct %}feedback-correct{% else %}feedback-wrong{% endif %}">
+                {{ feedback.message }}
+            </div>
+        {% endif %}
+        
+        {% if word %}
+            <div class="question-word">{{ word.english }}</div>
+            
+            <p>Bu kelimenin Türkçe karşılığı nedir?</p>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                <input type="hidden" name="word_id" value="{{ word.id }}">
+                
+                <input type="text" name="turkish_guess" placeholder="Cevabınızı buraya yazın..." autofocus>
+                
+                <br><br>
+                
+                <button type="submit" class="btn btn-mavi" style="width: 90%;">Cevapla</button>
+            </form>
+            
+        {% else %}
+            <h3>Çalışmak için henüz hiç kelime eklememişsin!</h3>
+            <p>Lütfen önce birkaç kelime ekle.</p>
+            <a href="{% url 'add-word' %}" class="btn btn-yesil">Hemen Kelime Ekle</a>
+        {% endif %}
+    </div>
+    
+    <br>
+    <a href="{% url 'main' %}" class="btn btn-kirmizi">Ana Sayfaya Dön</a>
+
+</body>
+</html>
